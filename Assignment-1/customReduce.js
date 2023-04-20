@@ -4,8 +4,12 @@
 */
 
 Array.prototype.customReduce = function (reducerFn,initialValue){
-    let result=initialValue;
-    for(let iter=0;iter<this.length;iter++){
+    if(initialValue=== undefined && this.length==0){
+        // Error case
+        throw new Error();
+    }
+    let result= (initialValue===undefined?this[0]:initialValue);
+    for(let iter=(initialValue===undefined?1:0);iter<this.length;iter++){
         result=reducerFn(result,this[iter])
     }
     return result

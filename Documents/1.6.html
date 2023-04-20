@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+
+  <a name="list">The list:</a>
+  <ul>
+    <li><a href="http://google.com">http://google.com</a></li>
+    <li><a href="/tutorial">/tutorial.html</a></li>
+    <li><a href="local/path">local/path</a></li>
+    <li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+    <li><a href="http://nodejs.org">http://nodejs.org</a></li>
+    <li><a href="http://internal.com/test">http://internal.com/test</a></li>
+  </ul>
+
+  <script>
+    let links=document.querySelectorAll('a')
+    for(let link of links){
+      let href=link.getAttribute('href')
+      let restStr='http://internal.com';
+      console.log(link,"   ",href)
+      if(href===undefined || href===null) continue;
+      if(!href.includes('://')) continue;
+      if(href.length>=restStr.length && href.slice(0,restStr.length)===restStr) continue;
+      link.style.color='orange'
+    }
+  </script>
+
+</body>
+</html>
