@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+
+  <ul class="tree" id="tree">
+    <li>Animals
+      <ul>
+        <li>Mammals
+          <ul>
+            <li>Cows</li>
+            <li>Donkeys</li>
+            <li>Dogs</li>
+            <li>Tigers</li>
+          </ul>
+        </li>
+        <li>Other
+          <ul>
+            <li>Snakes</li>
+            <li>Birds</li>
+            <li>Lizards</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>Fishes
+      <ul>
+        <li>Aquarium
+          <ul>
+            <li>Guppy</li>
+            <li>Angelfish</li>
+          </ul>
+        </li>
+        <li>Sea
+          <ul>
+            <li>Sea trout</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <script>
+    let allLis=tree.querySelectorAll('li')
+    console.log(allLis)
+    for(let li of allLis){
+        let span=document.createElement('span')
+        li.prepend(span)
+        span.append(span.nextSibling)
+    }
+    tree.onclick= function(event){
+        if(event.target.tagName!='SPAN') return
+        let childernLis=event.target.parentNode.querySelector('ul')
+        if(!childernLis) return
+        childernLis.hidden=!childernLis.hidden
+    }
+  </script>
+</body>
+</html>

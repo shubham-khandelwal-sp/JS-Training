@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #field {
+      width: 200px;
+      height: 150px;
+      border: 10px solid black;
+      background-color: #00FF00;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    #ball{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 40px;
+    }
+  </style>
+</head>
+
+<body style="height:2000px">
+
+  Click on a field to move the ball there.
+  <br> The ball should never leave the field.
+
+
+  <div id="field">
+    <img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+
+  <script>
+    field.onclick=function(event){
+          let fieldCoor=field.getBoundingClientRect()
+          console.log(fieldCoor)
+          let ballCoor ={
+            top: event.clientY-fieldCoor.top-field.clientTop-ball.clientHeight/2,
+            left: event.clientX-fieldCoor.left-field.clientLeft-ball.clientWidth/2
+          }
+          console.log(ballCoor)
+          if(ballCoor.top<0) ballCoor.top=0;
+          if(ballCoor.top+ball.clientHeight>field.clientHeight){
+            ballCoor.top=field.clientHeight-ball.clientHeight
+          }
+          if(ballCoor.left<0) ballCoor.left=0
+          if(ballCoor.left+ball.clientWidth>field.clientWidth){
+            ballCoor.left=field.clientWidth-ball.clientWidth
+          }
+          console.log(ballCoor)
+          ball.style.left=`${ballCoor.left}px`
+          ball.style.top=`${ballCoor.top}px`
+      }
+  </script>
+
+
+</body>
+</html>
